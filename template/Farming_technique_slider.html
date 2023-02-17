@@ -1,0 +1,32 @@
+{% load static %}
+<center>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width:500px; length:700px;">
+    <div class="carousel-inner">
+        {% for row in farmingdata %}
+      <div class="carousel-item{% if forloop.first %} active {% endif %}">
+        <video width="900px" height="340" controls>
+            <source src="/media/{{ row.video }}" type="video/mp4">
+            <source src="/media/{{ row.video }}" type="video/avi">
+            <source src="/media/{{ row.video }}" type="video/MOV">
+            <source src="/media/{{ row.video }}" type="video/webm">
+          </video>
+        <div class="carousel-content animate__animated animate__fadeInUp">
+          <h2 color="green"><b> {{ row.tech_name }} </b></span></h2>
+          
+          <div class="text-center"><a href="" class="btn-get-started"> <button type="button" class="btn btn-outline-info">Learn Now</button> </a></div>
+        </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+  
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</center>

@@ -1,0 +1,25 @@
+
+.leftcolumn{  
+  width: 382px;  
+  overflow: hidden;  
+  margin: auto;  
+  margin: 20 0 0 450px;  
+  padding: 80px;  
+  background: #d9e5e7;  
+  border-radius: 15px ;  
+    
+}  
+
+
+/* Fake image */
+.fakeimg {
+  background-color: rgb(243, 242, 244);
+  width: 100%;
+  padding: 20px;
+}
+
+
+
+
+
+

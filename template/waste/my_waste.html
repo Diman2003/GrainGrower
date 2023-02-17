@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}My Wasteage {% endblock %}
+
+{% block css %}
+
+<style>
+    .leftcolumn{  
+        width: 800px;  
+        overflow: hidden;  
+        margin: auto;  
+        margin: 20 0 0 450px;  
+        padding: 80px;  
+        background: #d9e5e7;  
+        border-radius: 15px ;  
+          
+      }  
+      
+      
+      /* Fake image */
+      .fakeimg {
+        
+        width: 100%;
+        padding: 20px;
+      }
+      
+
+
+</style>
+
+
+{% endblock %}
+{% block content %}
+
+<br><br>
+{% for wst in user.post_sender.all %}
+<div class="row">
+   
+  <div class="leftcolumn">
+    
+      <center><h2> {{ wst.title }} </h2></center>
+      <div class="fakeimg" ><img src="/media/{{ wst.image }}" alt="{{ wst.title }}" title="{{ wst.title }}" width="100%"></div>
+      <p><b>Caption:</b> {{ wst.caption }} </p>
+      <label><b>Location: </b> </label>{{ wst.location }}
+      
+      <br/>
+      <label><b>Pincode: </b> </label>{{ wst.pincode }} 
+      
+      <br/>
+      <label><b>Posted by: </b> </label> {{ wst.user }}
+      
+      <br/>
+      <label><b>Date: </b> </label> {{ wst.post_date }}<br>
+      <a href="{% url 'waste:detail_waste' pk=wst.pk %}" class="btn btn-warning btn-sm">Click For Delete</a>
+      <h6><font color="red"><i>Delete post if it has collected !! </i></font> </h6>
+  </div>
+  
+</div><br/>
+{% endfor %}
+{% endblock %}

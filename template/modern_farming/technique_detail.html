@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Modern Farming {% endblock %}
+
+{% block css %}
+
+<style>
+    .leftcolumn{  
+        width: 90%;  
+        overflow: hidden;  
+        margin: auto;  
+        margin: 20 0 0 450px;  
+        padding: 80px;  
+        background: #d9e5e7;  
+        border-radius: 15px ;  
+          
+      }  
+      
+      
+      /* Fake image */
+      .fakeimg {
+        
+        width: 100%;
+        padding: 20px;
+      }
+      
+
+
+</style>
+
+
+{% endblock %}
+{% block content %}
+
+<br><br>
+
+
+<div class="row">
+   
+  <div class="leftcolumn">
+    
+      <center><h2> {{ object.tech_name }} </h2></center>
+      <div class="fakeimg" ><video width="70%" height="40%" controls>
+        <source src="/media/{{ object.video }}">
+      </video></div>
+      <p><b><font color="green">Seasion: </font></b><h5>{{ object.season }} </h5>  </p>
+      <label><b> <font color="green">Requirment material:  </font> </b> </label> <h5> {{ object.required_tool|linebreaks }} </h5>
+      
+      <label><b> <font color="green">Posted Date:  </font></b> </label> <h5> {{ object.created }}  </h5>
+      
+      <label> <font color="green"><b>Soil Report: </b> </font></b> </label>  <h5> {{ object.soil_report|linebreaks }} </h5>
+      <label> <font color="green"><b>Process: </b> </font></b> </label>  <h5> {{ object.process|linebreaks }} </h5>
+     
+   
+  </div>
+  
+</div><br/>
+
+{% endblock %}

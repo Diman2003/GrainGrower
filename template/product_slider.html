@@ -1,0 +1,27 @@
+{% load static %}
+<center>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="width:500px; length:700px;">
+    <div class="carousel-inner">
+        {% for row in productdata %}
+      <div class="carousel-item{% if forloop.first %} active {% endif %}">
+        <img class="d-block w-100" src="/media/{{ row.mainimage }}" alt="First slide">
+        <div class="carousel-content animate__animated animate__fadeInUp">
+          <h2 color="green"><b> {{ row.name }} </b></span></h2>
+          <p><i>  {{ row.preview_text }}</i>  </p>
+          <div class="text-center"><a href="{% url 'Organic_Product:product_detail' pk=row.pk %}" class="btn-get-started"> <button type="button" class="btn btn-outline-info">Shope Now</button> </a></div>
+        </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+  
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</center>

@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title%}
+          Waste Post
+{% endblock %}
+{% block content %}
+<!-- ======= Breadcrumbs ======= 
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Sign Up</h2>
+      <ol>
+        <li><a href="">Home</a></li>
+        <li>R</li>
+      </ol>
+    </div>
+
+  </div>
+</section> End Breadcrumbs -->
+
+<!-- ======= Contact Section ======= -->
+
+
+<section id="contact" class="contact">
+  <div class="container">
+
+   
+
+    <div class="row mt-5 justify-content-center" data-aos="fade-up">
+      <div class="col-lg-4">
+        <h2>Waste</h2><br>
+
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          {{ message }}
+        </div>
+      {% endfor %}
+      
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          
+        
+          {{ form|crispy }}
+        
+
+          <div class="text-center">
+            <button class="btn btn-success" type="submit">Post Now</button></div>
+        </form><br>
+        
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Contact Section -->
+
+
+
+{% endblock %}

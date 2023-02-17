@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Wasteage {% endblock %}
+
+{% block css %}
+
+<style>
+    .leftcolumn{  
+        width: 800px;  
+        overflow: hidden;  
+        margin: auto;  
+        margin: 20 0 0 450px;  
+        padding: 80px;  
+        background: #d9e5e7;  
+        border-radius: 15px ;  
+          
+      }  
+      
+      
+      /* Fake image */
+      .fakeimg {
+        
+        width: 100%;
+        padding: 20px;
+      }
+      
+
+
+</style>
+
+
+{% endblock %}
+{% block content %}
+
+<br><br>
+{% for wst in waste %}
+{% if request.user.profile.zipcode == wst.pincode %}
+<div class="row">
+   
+  <div class="leftcolumn">
+    
+      <center><h2> {{ wst.title }} </h2></center>
+      <div class="fakeimg" ><img src="/media/{{ wst.image }}" alt="{{ wst.title }}" title="{{ wst.title }}" width="100%"></div>
+      <p><b>Caption:</b> {{ wst.caption }} </p>
+      <label><b>Location: </b> </label>{{ wst.location }}
+      
+      <br/>
+      <label><b>Pincode: </b> </label>{{ wst.pincode }} 
+      
+      <br/>
+      <label><b>Posted by: </b> </label> {{ wst.user }}
+      
+      <br/>
+      <label><b>Date: </b> </label> {{ wst.post_date }}
+   
+  </div>
+  
+</div><br/>
+{% endif %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>
+    {% block title %}
+
+    {% endblock %}
+  </title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+
+ <!--  Template Main CSS File-->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/styleLink.css' %}" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- =======================================================
+  * Template Name: Company - v2.1.0
+  * Template URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  
+ <!--<meta name="viewport" content="width=device-width, initial-scale=1">--> 
+  
+  <link id="dec"href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+ <!-- bootstrap icon -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <!-- style -->
+
+  
+  
+ {% block css %}
+ 
+ 
+ {% endblock %}
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+     <h1 class="logo mr-auto "> <a style="text-decoration:none;"href="{% url 'home' %}"><span>Grain</span>Grower</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+            {% if user.is_authenticated %}
+          <li class="active bor"><a style="text-decoration:none;" href="{% url 'home' %}">Home</a></li>
+
+          <li class="drop-down bor"><a style="text-decoration:none;" href="{% url 'waste:wastage' %}">Waste</a>
+            {% if request.user.profile.user_type == 'FOR_WASTE' %}
+            <ul>
+              <li><a style="text-decoration:none;" class="bor"href="{% url 'waste:post_waste' %}">Post Wastage</a></li>
+              <li><a style="text-decoration:none;" class="bor" href="{% url 'waste:my_waste' %}">My Wastage</a></li>
+            </ul>
+            {% endif %}
+          </li>
+          <li><a class=" bor" style="text-decoration:none;" href="">Disease-Scanner</a></li>
+          <li><a class="bor" style="text-decoration:none;" href="">Agronomist</a></li>
+          <li class="drop-down"><a style="text-decoration:none;" href="{% url 'Organic_Product:products' %}">Organic-Product</a>
+            <ul>
+              <li><a style="text-decoration:none;" href="{% url 'Payment:orders' %}">Order</a></li>
+              {% if request.user.profile.user_type == 'SELLER' %}
+              <li><a style="text-decoration:none;" href="{% url 'Organic_Product:sell_product' %}">Sell Product</a></li>
+              {% endif %}
+              <li><a style="text-decoration:none;" href="{% url 'Order:cart' %}"><i class="fa fa-shopping-cart"></i> Cart  </a></li>
+            </ul>
+          </li>
+          <li><a style="text-decoration:none;" href="{% url 'modern_farming:farm_tech_list' %}">Modern-Farming</a></li>
+          <li><a style="text-decoration:none;" href="">Manure-Making</a></li>
+          
+          <li><a style="text-decoration:none;" href="{% url 'App_Login:display_profile' %}">My Profile</a></li>
+          <li><a style="text-decoration:none;" href="{% url 'App_Login:logout' %}"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a><li>
+            {% else %}
+            <li><a style="text-decoration:none;" href="{% url 'App_Login:login' %}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+            <li><a style="text-decoration:none;" href="{% url 'App_Login:signup' %}"> <i class="fa fa-user" aria-hidden="true"></i> SignUp</a></li>
+          {% endif %}
+          
+        </ul>
+      </nav><!-- .nav-menu -->
+
+      
+
+    </div>
+  </header><!-- End Header -->
+
+  
+
+  <main id="main">
+
+    <div class="messages container mt-2">
+      {% if messages %}
+
+      {% for message in messages %}
+       <div {% if message.tags %} class="alert alert-{{ message.tags }} {% endif %}" role="alert">
+              {{ message }}
+              <button type="button"  class="close" data-dismiss="alert" aria-level="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+       </div>
+      {% endfor %}
+     
+      {% endif %}
+
+    </div>
+<br><br>
+
+   {% block content %}
+
+   {% endblock %} 
+<br><br>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Company</h3>
+            <p>
+              480-A , Sector-D <br>
+              Bhopal, Pin 462022<br>
+              India <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> graingrower@info.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a style="text-decoration:none;" href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a style="text-decoration:none;" href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a style="text-decoration:none;" href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a style="text-decoration:none;" href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a style="text-decoration:none;" href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          
+
+          
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="mr-md-auto text-center text-md-left">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Company</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/company-free-html-bootstrap-template/ -->
+          Designed by <a href="">Grain Grower Technology</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a style="text-decoration:none;" href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a style="text-decoration:none;" href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a style="text-decoration:none;" href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a style="text-decoration:none;" href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a style="text-decoration:none;" href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'vendor/aos/aos.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

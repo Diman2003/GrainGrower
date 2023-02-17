@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Modern Farming {% endblock %}
+
+{% block css %}
+
+<style>
+    .leftcolumn{  
+        width: 1000px;  
+        overflow: hidden;  
+        margin: auto;  
+        margin: 20 0 0 450px;  
+        padding: 80px;  
+        background: #d9e5e7;  
+        border-radius: 15px ;  
+          
+      }  
+      
+      
+      /* Fake image */
+      .fakeimg {
+        
+        width: 100%;
+        padding: 20px;
+      }
+      
+
+
+</style>
+
+
+{% endblock %}
+{% block content %}
+
+<br><br>
+{% for mft in modern_farming %}
+
+<div class="row">
+   
+  <div class="leftcolumn">
+    
+      <center><h2> {{ mft.tech_name }} </h2></center>
+      <div class="fakeimg" ><video width="900px" height="340" controls>
+        <source src="/media/{{ mft.video }}" type="video/mp4">
+        <source src="/media/{{ mft.video }}" type="video/avi">
+        <source src="/media/{{ mft.video }}" type="video/MOV">
+        <source src="/media/{{ mft.video }}" type="video/webm">
+      </video></div>
+      <p><b><font color="green">Seasion: </font></b><h5>{{ mft.season }} </h5>  </p>
+      <label><b> <font color="green">Requirment material:  </font> </b> </label> <h5> {{ mft.required_tool|linebreaks }} </h5>
+      
+      <label><b> <font color="green">Posted Date:  </font></b> </label> <h5> {{ mft.created }}  </h5>
+      
+      <label> <font color="green"><b>Soil Report: </b> </font></b> </label>  <h5> {{ mft.soil_report|linebreaks }} </h5>
+     <a style="text-decoration:none;" href="{% url 'modern_farming:tech_detail' pk=mft.pk %}"><button type="button" class="btn btn-outline-info">More Detail</button> </a>
+   
+  </div>
+  
+</div><br/>
+
+{% endfor %}
+{% endblock %}

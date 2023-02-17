@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+Home Page
+{% endblock %}
+{% block css %}
+<style>
+    .navbar-dark{
+        /*  --bs-navbar-color:rgb(255 255 255/ 95%)!important;*/
+      }
+      .img_slide{
+          height: 400px !important;
+          float: left !important;
+      }
+      .growth-img{
+          /* height:400px !important; */
+      }
+      .col{
+          width: 30% !important;
+          float: left !important;
+          margin: 20px !important;
+          margin-left:20px;
+      }
+</style>
+
+{% endblock %}
+
+{% block content %}
+{% include 'slider.html' with sliderdata=slider %}
+<br>
+<h4 class="margin:30px;">Waste Material<font color="green"> <a style="text-decoration:none;" href="{% url 'waste:wastage' %}">View More <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </a> </font></h4>
+{% include 'waste_slider.html' with wastedata=waste %}
+<br>
+<h4>Organic Products<font color="green"> <a style="text-decoration:none;" href="{% url 'Organic_Product:products' %}">View More <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a> </font></h4>
+{% include 'product_slider.html' with productdata=product %}
+<br>
+<h4>Modern Farming<font color="green"> <a style="text-decoration:none;" href="">View More <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a> </font></h4>
+{% include 'Farming_technique_slider.html' with farmingdata=farmdata %}
+ 
+
+
+{% endblock %}

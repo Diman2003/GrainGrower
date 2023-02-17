@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title%}
+          Profile
+{% endblock %}
+{% block content %}
+<br><br><br>
+
+<div class="container">
+    <div class="user-image">
+        <img src="/media/{{ user.profile.profile_pic }}" class="rounded-circle" width="120px">
+    </div>
+    <h2>My Profile</h2>
+    
+      <div class="My-Profile">
+        
+          <label><b>Username </b> </label>
+                {{ request.user.profile.username}}
+          <br /><br />
+          <label><b>Fullname </b> </label>
+          {{ request.user.profile.full_name }}
+          <br/><br/>
+          <label><b>User Type </b> </label>
+          {{ request.user.profile.user_type }}
+          <br /><br />
+          
+          <label><b>Phone Number</b> </label>
+          {{ request.user.profile.phone }}
+          <br /><br />
+          
+          <label><b>Email </b> </label>
+          {{ request.user.email }}
+          <br /><br />
+          <label><b>address </b> </label>
+          {{ request.user.profile.address_1 }}
+          <br /><br />
+          <label><b>City </b> </label>
+          {{ request.user.profile.city }}
+          <br /><br />
+          <label><b>Pin Code </b> </label>
+          {{ request.user.profile.zipcode }}
+          <br /><br />
+          <label><b>Country </b> </label>
+          {{ request.user.profile.country }}
+          <br /><br />
+          
+       
+      </div>
+
+      <a href="{% url 'App_Login:profile' %}" class="btn btn-warning btn-sm">Change Profile Info</a>
+    </div>
+  </div>
+
+
+
+
+{% endblock %}
